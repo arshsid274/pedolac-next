@@ -1,26 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #2B6BAA;
+  --color-brand-light: #4A9DD4;
+  --color-brand-dark: #1A3C8F;
+  --color-brand-pale: #B8DCF0;
+  --font-sans: "Nunito", system-ui, sans-serif;
+}
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #334155;
+  --gradient-v: linear-gradient(180deg, #4A9DD4 0%, #2B6BAA 50%, #1A3C8F 100%);
+  --gradient-h: linear-gradient(90deg, #4A9DD4 0%, #2B6BAA 50%, #1A3C8F 100%);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Nunito", system-ui, sans-serif;
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.float-card   { animation: float 4s ease-in-out infinite; }
+.float-card-2 { animation: float 4s ease-in-out infinite 2s; }
+
+.gradient-text {
+  background: var(--gradient-v);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg   { background: var(--gradient-v); }
+.gradient-bg-h { background: var(--gradient-h); }
+
+.hero-circle {
+  background: radial-gradient(circle at 50% 40%, #B8DCF0 0%, #4A9DD4 35%, #2B6BAA 60%, #1A3C8F 100%);
+}
+
+.nav-dropdown:hover .dropdown-menu { display: block; }
+
+.tab-btn { transition: all 0.2s; }
+.tab-btn.active {
+  background: #fff;
+  color: #1A3C8F;
+  border-top: 3px solid #2B6BAA;
+  box-shadow: 0 -2px 12px rgba(43,107,170,0.08);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: grid; }
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+.faq-item.open .faq-answer { max-height: 400px; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-icon { transition: transform 0.25s ease; display: inline-block; }
